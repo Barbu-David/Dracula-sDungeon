@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjb6exwpsq10x"]
+[gd_scene load_steps=6 format=3 uid="uid://brqow2ycerftc"]
 
-[ext_resource type="PackedScene" uid="uid://dkg6hbjflaido" path="res://player.tscn" id="1_hly68"]
-[ext_resource type="PackedScene" uid="uid://bfssa4r0lrsnc" path="res://enemy.tscn" id="2_bvgre"]
+[ext_resource type="PackedScene" uid="uid://dkg6hbjflaido" path="res://player/player.tscn" id="1_hly68"]
+[ext_resource type="PackedScene" uid="uid://bfssa4r0lrsnc" path="res://enemies/enemy.tscn" id="2_bvgre"]
+[ext_resource type="PackedScene" uid="uid://ckgjupnmgb7ws" path="res://spells/fireball.tscn" id="3_ea1x0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s45dl"]
 size = Vector2(200, 200)
@@ -32,3 +33,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -4, -60)
 
 [node name="Enemy2" parent="." instance=ExtResource("2_bvgre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -4, -60)
+
+[node name="Fireball" parent="." instance=ExtResource("3_ea1x0")]

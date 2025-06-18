@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4dc5div6g88l"]
+
+[ext_resource type="Script" uid="uid://bopht0wo66nd8" path="res://addons/SimpleDungeons/DungeonRoom3D.gd" id="1_ppos3"]
+[ext_resource type="PackedScene" uid="uid://dkg6hbjflaido" path="res://player/player.tscn" id="2_saywr"]
+[ext_resource type="PackedScene" uid="uid://c2dae80p4fsd5" path="res://rewards/reward.tscn" id="3_qq218"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qq218"]
+albedo_color = Color(1, 0.027319, 0.916978, 1)
+
+[sub_resource type="GDScript" id="GDScript_saywr"]
+resource_name = "RemoveUnusedDoors"
+script/source = "extends Node
+
+func _ready() -> void:
+	$\"..\".connect(\"dungeon_done_generating\", remove_doors)
+
+func remove_doors() -> void:
+	for door in $\"..\".get_doors():
+		if door.get_room_leads_to() == null:
+			door.door_node.queue_free()
+"
+
+[node name="StartRoom" type="Node3D"]
+script = ExtResource("1_ppos3")
+size_in_voxels = Vector3i(2, 1, 2)
+min_count = 1
+max_count = 1
+metadata/_custom_type_script = "uid://bopht0wo66nd8"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qq218")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+operation = 2
+size = Vector3(19.5, 9.5, 19.5)
+
+[node name="DOOR?_1" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.2, 5)
+operation = 2
+size = Vector3(1, 7, 4)
+
+[node name="DOOR?_2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -5)
+operation = 2
+size = Vector3(1, 7, 4)
+
+[node name="DOOR?_3" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, -1.2, -10)
+operation = 2
+size = Vector3(1, 7, 4)
+
+[node name="DOOR?_4" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, -1.2, 10)
+operation = 2
+size = Vector3(1, 7, 4)
+
+[node name="Player" parent="." instance=ExtResource("2_saywr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.2602, 0)
+
+[node name="Node" type="Node" parent="."]
+script = SubResource("GDScript_saywr")
+
+[node name="reward" parent="." instance=ExtResource("3_qq218")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.21126, -2.76428, -4.58311)

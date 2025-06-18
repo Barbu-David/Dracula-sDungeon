@@ -1,0 +1,17 @@
+res://enemies/enemy.tscn
+res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres
+res://enemies/enemy.gd
+res://spells/fireball.tscn
+res://player/player.tscn
+res://dungeon_generator_3d.tscn
+res://rooms/Corridor.tscn
+res://rooms/Stair.tscn
+res://rooms/enemy_room1.tscn
+res://rooms/start_Room.tscn
+res://player/player.gd
+res://spells/fireball.gd
+res://enemies/enemy2.tscn
+res://rooms/enemy_room2.tscn
+res://rewards/reward.tscn
+res://rewards/reward.gd
+res://rooms/rewardRoom.tscn

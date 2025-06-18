@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2dae80p4fsd5"]
+
+[ext_resource type="Script" uid="uid://07nqh4csd3ou" path="res://rewards/reward.gd" id="1_7taas"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7k104"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyqm"]
+albedo_color = Color(0.662667, 0.71, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7k104"]
+
+[node name="reward" type="CharacterBody3D" groups=["reward"]]
+script = ExtResource("1_7taas")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7k104")
+surface_material_override/0 = SubResource("StandardMaterial3D_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7k104")
