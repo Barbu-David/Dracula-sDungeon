@@ -1,5 +1,7 @@
-DungeonRoom3D
 AudioStreamPlayer3D
+AudioListener3D
+ProgressBar
+DungeonRoom3D
 Node
 OmniLight3D
 SpotLight3D

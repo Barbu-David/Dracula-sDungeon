@@ -10,6 +10,7 @@ var enemy_knockback := 5
 var attack_strenght := 1
 var speed := 10.0
 var minimum_soul := 1
+var max_soul :=20
 var soul_gathering := 2
 @export var soul=0;
 @onready var camera = $Camera3D
@@ -21,7 +22,8 @@ var soul_gathering := 2
 @onready var hurtNoise =$HurtSound
 @onready var FireballNoise = $FireballSound
 @onready var enemyHurtNoise = $EnemySound
-@onready var label = $SoulUi
+@onready var healthBar  = $Camera3D/HealthBar
+@onready var soulBar  = $Camera3D/SoulBar
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -49,7 +51,7 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("restart") or hp<0:
 		get_tree().reload_current_scene()
-	label.set_text(str(soul));
+
 
 
 func _physics_process(delta: float) -> void:
@@ -73,6 +75,9 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	if not velocity.x and not velocity.y: 		walkingNoise.play()
+	
+	healthBar.value=hp*100/max_hp
+	soulBar.value=soul*100/max_soul
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -102,7 +107,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		if enemy.cooldown_inv<=0: 
 			soul=soul+soul_gathering
 			enemyHurtNoise.play()
-		enemy.take_damage(attack_strenght, forward_dir)
+		enemy.take_damage(attack_strenght, forward_dir*2)
 		weaponHitbox.monitoring=false
 	if body.is_in_group("reward"):
 		body.queue_free()

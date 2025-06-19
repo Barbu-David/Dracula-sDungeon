@@ -26,7 +26,9 @@ shape = SubResource("ConvexPolygonShape3D_olwj8")
 
 [node name="boom" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_hj3xb")
-attenuation_model = 3
+volume_db = 4.0
+unit_size = 100.0
+max_db = 4.0
 max_distance = 1000.0
 max_polyphony = 3
 

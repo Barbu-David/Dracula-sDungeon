@@ -8,7 +8,7 @@ class_name Enemy
 @export var attack_range: float = 1.5
 @export var attack_cooldown_max: float = 1.0
 @export var pwr=6
-
+@onready var walkingNoise = $WalkingNoise
 #Internal state
 var hp: float
 var cooldown_attack: float = 0.0
@@ -48,6 +48,7 @@ func _process(delta: float) -> void:
 				state = "attacking"
 			elif dist > detection_radius:
 				state = "idle"
+				walkingNoise.play()
 		"attacking":
 			if cooldown_attack == 0:
 				_attack()
